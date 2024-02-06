@@ -1,0 +1,69 @@
+<mat-form-field [formGroup]="form">
+  <mat-label>Locale</mat-label>
+  <mat-select formControlName="locale">
+    @for (locale of locales; track locale) {
+    <mat-option [value]="locale.isoCode">{{locale.name}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+
+<h4 style="margin-top: 3rem">
+  Current locale: <strong>{{selectedLocale}}</strong>
+</h4>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Type</th>
+      <th scope="col">Unformatted value</th>
+      <th scope="col">Formatted value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Integer</th>
+      <td>{{ integer }}</td>
+      <td>{{ integer | number}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Integer (thousands)</th>
+      <td>{{ integerLarge }}</td>
+      <td>{{ integerLarge | number}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Decimal</th>
+      <td>{{ decimal }}</td>
+      <td>{{ decimal | number}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Currency</th>
+      <td>${{ decimal }}</td>
+      <td>{{ decimal | currency: 'USD': 'symbol'}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Currency (narrow)</th>
+      <td>${{ decimal }}</td>
+      <td>{{ decimal | currency: 'USD': 'symbol-narrow'}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Date (long)</th>
+      <td>{{ date | date }}</td>
+      <td>{{ date | date: 'longDate'}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Date (short)</th>
+      <td>{{ date | date }}</td>
+      <td>{{ date | date: 'shortDate'}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Time</th>
+      <td>{{ date | date: 'mediumTime' }}</td>
+      <td>{{ date | date: 'shortTime'}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Percentage</th>
+      <td>{{ (percentage / 100) }}</td>
+      <td>{{ (percentage / 100) | percent: '2.2-6'}}</td>
+    </tr>
+  </tbody>
+</table>
